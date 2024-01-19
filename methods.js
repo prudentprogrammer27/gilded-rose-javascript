@@ -2,12 +2,20 @@
 
 
 export function increaseQuality(classInstance) {
-    classInstance.quality += 1;
+    classInstance.quality += 1; 
+    if(classInstance.quality >= 50) {
+        classInstance.quality = 50;
+        return;
+    }
 };
 
 
 export function decreaseQuality(classInstance) {
-    classInstance.quality -= 1
+    if(classInstance.sellIn < 0) {
+        classInstance.quality -= 2
+    } else {
+        classInstance.quality -= 1
+    }  
 };
 
 
@@ -28,4 +36,10 @@ export function concertFunction(classInstance) {
         classInstance.sellIn --;
         classInstance.quality += 2;
     }
-};
+}
+
+export function conjuredFunction(classInstance) {
+    classInstance.sellIn --;
+    classInstance.quality -= 2;
+}
+
