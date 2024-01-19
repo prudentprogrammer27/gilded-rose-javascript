@@ -6,13 +6,41 @@ export class Item {
     this.sellIn = sellIn;
     this.quality = quality;
   }
+  update() {
+    this.sellIn --;
+  }
 }
 
-export class Cheese extends Item {}
-export class CommonItems extends Item {}
-export class ConcertTickets extends Item {}
-export class LegendaryItems extends Item {}
-export class Conjured extends Item{}
+export class Cheese extends Item {
+  update() {
+    super.update();
+    increaseQuality(this);
+  }
+}
+
+export class CommonItems extends Item {
+  update() {
+    super.update();
+    decreaseQuality(this);
+  }
+}
+export class ConcertTickets extends Item {
+  update() {
+    super.update();
+    concertFunction(this);
+  }
+}
+export class LegendaryItems extends Item {
+  update() {
+    //do nothing
+  }
+}
+export class Conjured extends Item{
+  update() {
+    super.update();
+    conjuredFunction(this);
+  }
+}
 export let items = [];
 
 items.push(new CommonItems ("+5 Dexterity Vest", 10, 20));
@@ -24,27 +52,28 @@ items.push(new Conjured ("Conjured Mana Cake", 3, 6));
 
 export const updateQuality = () => {
   for (let item of items) {
-    if (item instanceof Cheese) {
-      increaseQuality(item);
-      decreaseSellIn(item);
-      continue;
-    }
-
-    if (item instanceof CommonItems) {
-      decreaseQuality(item);
-      decreaseSellIn(item);
-      continue;
-    }
-
-    if (item instanceof LegendaryItems) {
-      continue;
-    }
-
-    if (item instanceof ConcertTickets) {
-      concertFunction(item);
-    }
-    if (item instanceof Conjured) {
-      conjuredFunction(item)
-    }
-  } 
+    item.update();
+  }
 }
+//     if (item instanceof Cheese) {
+//       update(item);
+//     }
+
+//     if (item instanceof CommonItems) {
+//       decreaseQuality(item);
+//       decreaseSellIn(item);
+//       continue;
+//     }
+
+//     if (item instanceof LegendaryItems) {
+//       continue;
+//     }
+
+//     if (item instanceof ConcertTickets) {
+//       concertFunction(item);
+//     }
+//     if (item instanceof Conjured) {
+//       conjuredFunction(item)
+//     }
+//   } 
+// }

@@ -19,27 +19,23 @@ export function decreaseQuality(classInstance) {
 };
 
 
-export function decreaseSellIn(classInstance) {
-    classInstance.sellIn -= 1
-};
+// export function decreaseSellIn(classInstance) {
+//     classInstance.sellIn -= 1
+// };
 
 export function concertFunction(classInstance) {
     if(classInstance.sellIn <= 0) {
-        classInstance.sellIn --;
         classInstance.quality = 0;
     }
-    if(classInstance.sellIn > 0 && classInstance.sellIn <= 5) {
-        classInstance.sellIn --;
+    if(classInstance.sellIn > 0 && classInstance.sellIn <= 5) { 
         classInstance.quality += 3;
     }
     if(classInstance.sellIn > 5 && classInstance.sellIn <= 10) {
-        classInstance.sellIn --;
         classInstance.quality += 2;
     }
 }
 
 export function conjuredFunction(classInstance) {
-    classInstance.sellIn --;
     classInstance.quality -= 2;
 }
 
