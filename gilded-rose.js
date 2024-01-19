@@ -1,4 +1,4 @@
-import { increaseQuality, decreaseQuality, decreaseSellIn } from "./methods.js";
+import { increaseQuality, decreaseQuality, decreaseSellIn, concertFunction } from "./methods.js";
 
 export class Item {
   constructor(name, sellIn, quality) {
@@ -48,11 +48,24 @@ export const updateQuality = () => {
       decreaseSellIn(item);
       continue;
     }
+
     if (item instanceof CommonItems) {
-      
+      decreaseQuality(item);
+      decreaseSellIn(item);
+      continue;
     }
-  }
-};
+
+    if (item instanceof LegendaryItems) {
+      continue;
+    }
+
+    if (item instanceof ConcertTickets) {
+      concertFunction(item);
+    }
+    break;
+  } 
+}
+
     //------------------------------------------------------
 //     if (
 //       item.name != "Aged Brie" &&
